@@ -14,4 +14,6 @@ def solution(xs):
         return(f"{np.prod(new_matrix)}")
 
     
-print(solution(array))
+#print(solution(array))
+
+print(1000**50/((2**128)+(2**128)))
