@@ -1,6 +1,6 @@
 import numpy as np
 
-array = [-5,0,38,-9]
+array = [2,3,-2,-4,0,5,-9,-5,-2]
 
 def solution(xs):
     matrix = np.array(xs)
