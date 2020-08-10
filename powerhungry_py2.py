@@ -1,27 +1,39 @@
 import numpy as np
 
-array = [2,3,-2,-4,0,5,-9,-5,-2,32,32,1001,0,0,0,0,0,0,-4,-4,-4,-74,-4,-4,-4,-4,-4,-4,4]
+array = [2,3,-2,-4,0,5,-9,-5,-2,32,32,1001,0,0,0,0,0,0,-4,-4,-4,-74,-4,-4,-4,-4,-4,-4,4,-2,-2]
 
 def solution(xs):
     if 0 < len(xs) < 50:
-        matrix = np.array(xs)
-        new_matrix = np.sort(np.delete(matrix, np.where((matrix == 0)|(abs(matrix) > 1000))))
+        arr_list = sorted([x for x in xs if x != 0 or abs(x) > 1000])
+        print(arr_list)
         negatives = [x for x in xs if x<0]
-        #print(np.where(new_matrix == -1)[0][0])
+        print(len(negatives))
+        rep = []
         if len(negatives)%2 != 0:
             neg_delete = (min(map(abs, negatives)))*-1
-            amount = np.count_nonzero(new_matrix == neg_delete)
+            print(neg_delete)
+            amount = arr_list.count(neg_delete)
+            print(amount)
+            prod = 1
             if amount > 1:
-                rep = np.repeat(neg_delete, (amount-1))
-                final_matrix = np.concatenate((np.delete(new_matrix, np.where(new_matrix == neg_delete)), rep))
-                print(final_matrix.dtype)
-                return("%s"%(np.prod(final_matrix))) #returns zero due to integer overflow
+                arr_list.remove(neg_delete)
+                rep += (amount-1) * [neg_delete]
+                print(rep)
+                final_list = arr_list + rep
+                print(final_list)
+                for x in arr_list:
+                    prod = prod * x
+                return(prod)
             else:
-                final_matrix = np.delete(new_matrix, np.where(new_matrix == neg_delete))
-                return("%s"%(np.prod(final_matrix)))
-            
+                pass
+                arr_list.remove(neg_delete)
+                final_list = arr_list + rep
+                for x in arr_list:
+                    prod = prod * x
+                return(prod)
         else:
-            return("%s"%np.prod(new_matrix))
+            for x in arr_list:
+                prod = prod * x
 
-    
+
 print(solution(array))

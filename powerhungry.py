@@ -16,4 +16,8 @@ def solution(xs):
     
 #print(solution(array))
 
-print(1000**50/((2**128)+(2**128)))
+n = 5
+v = 0.5
+l = [v]*n
+l += n * [77]
+print(l)
